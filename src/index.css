@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Roboto", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Roboto", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-brand-primary: #2D5A27;
+  --color-brand-secondary: #4F6D4F;
+  --color-brand-accent: #A3B18A;
+  --color-brand-bg: #1A241A;
+  --color-brand-text: #1A241A;
+  --color-brand-link: #2D5A27;
+
+  --radius: 7px;
+}
+
+@layer base {
+  body {
+    @apply font-sans text-brand-text bg-white antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-sans tracking-tight;
+  }
+}
+
+.glass-header {
+  @apply sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100;
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center px-6 py-3 rounded bg-brand-primary text-white font-semibold transition-all hover:bg-brand-primary/90 active:scale-95;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center px-6 py-3 rounded border-2 border-brand-primary text-brand-primary font-semibold transition-all hover:bg-brand-primary hover:text-white active:scale-95;
+}
