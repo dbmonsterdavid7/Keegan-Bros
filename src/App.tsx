@@ -23,6 +23,11 @@ import {
   ArrowUpRight
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import ServicesPage from './components/ServicesPage';
+import ServiceDetailPage from './components/ServiceDetailPage';
+import ContactPage from './components/ContactPage';
+import GalleryPage from './components/GalleryPage';
+import { serviceDetails } from './data/serviceDetails';
 
 const services = [
   {
@@ -33,12 +38,12 @@ const services = [
   {
     title: "Lawn Care",
     icon: <Shovel className="w-6 h-6" />,
-    items: ["Lawn Mowing", "Yard Cleanups", "Mulching", "Plant Trimming & Pruning"]
+    items: ["Yard Cleanups", "Mulching", "Plant Trimming & Pruning"]
   },
   {
     title: "Irrigation",
     icon: <Droplets className="w-6 h-6" />,
-    items: ["Sprinkler Repairs", "Sprinkler Startups", "System Maintenance"]
+    items: ["Sprinkler Repairs", "Sprinkler Startups", "System Maintenance", "French Drain Installation"]
   }
 ];
 
@@ -48,12 +53,28 @@ export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null);
+  const [currentPage, setCurrentPage] = useState<'home' | 'services' | 'service-detail' | 'contact' | 'gallery'>('home');
+  const [currentServiceId, setCurrentServiceId] = useState<string | null>(null);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [mobileSubcategoryOpen, setMobileSubcategoryOpen] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currentPage, currentServiceId]);
+
+  const navigateToService = (item: string) => {
+    const id = item.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-');
+    setCurrentServiceId(id);
+    setCurrentPage('service-detail');
+    setIsMenuOpen(false);
+    setActiveMegaMenu(null);
+  };
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -80,7 +101,7 @@ export default function App() {
       {/* Header */}
       <header className={`glass-header transition-all duration-300 ${scrolled ? 'py-2' : 'py-4'}`}>
         <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
-          <a href="/" className="flex items-center gap-2 group">
+          <a href="/" onClick={(e) => { e.preventDefault(); setCurrentPage('home'); }} className="flex items-center gap-2 group">
             <div className="bg-brand-primary p-2 rounded group-hover:rotate-12 transition-transform">
               <Trees className="text-white" size={24} />
             </div>
@@ -96,7 +117,10 @@ export default function App() {
               onMouseEnter={() => setActiveMegaMenu('services')}
               onMouseLeave={() => setActiveMegaMenu(null)}
             >
-              <button className="flex items-center gap-1 font-medium hover:text-brand-primary transition-colors">
+              <button 
+                onClick={() => setCurrentPage('services')}
+                className="flex items-center gap-1 font-medium hover:text-brand-primary transition-colors"
+              >
                 Services <ChevronDown size={16} className={`transition-transform duration-300 ${activeMegaMenu === 'services' ? 'rotate-180' : ''}`} />
               </button>
               
@@ -117,10 +141,13 @@ export default function App() {
                         <ul className="space-y-2">
                           {service.items.map((item) => (
                             <li key={item}>
-                              <a href="#" className="text-sm text-gray-500 hover:text-brand-primary transition-colors flex items-center gap-1 group">
+                              <button 
+                                onClick={() => navigateToService(item)}
+                                className="text-sm text-gray-500 hover:text-brand-primary transition-colors flex items-center gap-1 group w-full text-left"
+                              >
                                 <ArrowRight size={12} className="opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" />
                                 {item}
-                              </a>
+                              </button>
                             </li>
                           ))}
                         </ul>
@@ -131,17 +158,40 @@ export default function App() {
               </AnimatePresence>
             </div>
 
-            <a href="#" className="font-medium hover:text-brand-primary transition-colors">Areas</a>
-            <a href="#" className="font-medium hover:text-brand-primary transition-colors">Blog</a>
-            <a href="#" className="font-medium hover:text-brand-primary transition-colors">FAQ</a>
+            <button 
+              onClick={() => setCurrentPage('contact')}
+              className="font-medium hover:text-brand-primary transition-colors"
+            >
+              Contact
+            </button>
             <a href="#" className="font-medium hover:text-brand-primary transition-colors">About</a>
-            <a href="#" className="btn-primary">Get a Quote</a>
+            <button 
+              onClick={() => setCurrentPage('gallery')}
+              className="font-medium hover:text-brand-primary transition-colors"
+            >
+              Gallery
+            </button>
+            <button 
+              onClick={() => setCurrentPage('contact')}
+              className="btn-primary"
+            >
+              Get a Quote
+            </button>
           </nav>
 
-          {/* Mobile Menu Toggle */}
-          <button className="lg:hidden p-2" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-            {isMenuOpen ? <X /> : <Menu />}
-          </button>
+          {/* Mobile Actions */}
+          <div className="flex items-center gap-2 lg:hidden">
+            <a 
+              href="tel:7348658608" 
+              className="p-2 text-brand-primary hover:text-brand-accent transition-colors"
+              aria-label="Call Us"
+            >
+              <Phone size={24} />
+            </a>
+            <button className="p-2" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+              {isMenuOpen ? <X /> : <Menu />}
+            </button>
+          </div>
         </div>
       </header>
 
@@ -152,22 +202,101 @@ export default function App() {
             initial={{ opacity: 0, x: '100%' }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}
-            className="fixed inset-0 z-40 bg-white lg:hidden pt-24 px-6"
+            className="fixed inset-0 z-40 bg-white lg:hidden pt-24 px-6 overflow-y-auto"
           >
-            <nav className="flex flex-col gap-6 text-xl font-serif font-bold">
-              <a href="#" onClick={() => setIsMenuOpen(false)}>Services</a>
-              <a href="#" onClick={() => setIsMenuOpen(false)}>Areas</a>
-              <a href="#" onClick={() => setIsMenuOpen(false)}>Blog</a>
+            <nav className="flex flex-col gap-6 text-xl font-serif font-bold pb-12">
+              <div className="flex flex-col gap-4">
+                <button 
+                  onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                  className="flex items-center justify-between w-full text-left"
+                >
+                  Services 
+                  <ChevronDown size={20} className={`transition-transform duration-300 ${mobileServicesOpen ? 'rotate-180' : ''}`} />
+                </button>
+                
+                <AnimatePresence>
+                  {mobileServicesOpen && (
+                    <motion.div 
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      className="overflow-hidden flex flex-col gap-4 pl-4 border-l-2 border-brand-primary/20"
+                    >
+                      {services.map((service) => (
+                        <div key={service.title} className="flex flex-col gap-3">
+                          <button 
+                            onClick={() => setMobileSubcategoryOpen(mobileSubcategoryOpen === service.title ? null : service.title)}
+                            className="flex items-center justify-between w-full text-lg text-brand-primary"
+                          >
+                            {service.title}
+                            <ChevronDown size={18} className={`transition-transform duration-300 ${mobileSubcategoryOpen === service.title ? 'rotate-180' : ''}`} />
+                          </button>
+                          
+                          <AnimatePresence>
+                            {mobileSubcategoryOpen === service.title && (
+                              <motion.div 
+                                initial={{ height: 0, opacity: 0 }}
+                                animate={{ height: 'auto', opacity: 1 }}
+                                exit={{ height: 0, opacity: 0 }}
+                                className="overflow-hidden flex flex-col gap-2 pl-4"
+                              >
+                                {service.items.map((item) => (
+                                  <button 
+                                    key={item} 
+                                    onClick={() => navigateToService(item)}
+                                    className="text-base text-left text-gray-500 font-sans font-normal hover:text-brand-primary transition-colors py-1"
+                                  >
+                                    {item}
+                                  </button>
+                                ))}
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+                        </div>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              <button 
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  setCurrentPage('contact');
+                }} 
+                className="text-left"
+              >
+                Contact
+              </button>
               <a href="#" onClick={() => setIsMenuOpen(false)}>About</a>
-              <a href="#" onClick={() => setIsMenuOpen(false)} className="text-brand-primary">Get a Quote</a>
+              <button 
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  setCurrentPage('gallery');
+                }} 
+                className="text-left"
+              >
+                Gallery
+              </button>
+              <button 
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  setCurrentPage('contact');
+                }} 
+                className="text-brand-primary text-left"
+              >
+                Get a Quote
+              </button>
             </nav>
           </motion.div>
         )}
       </AnimatePresence>
 
       <main>
-        {/* Hero Section */}
-        <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+        {currentPage === 'home' ? (
+          <>
+            {/* Hero Section */}
+            <section className="relative min-h-[90vh] flex items-center overflow-hidden">
           <div className="absolute inset-0 z-0">
             <img 
               src="https://images.unsplash.com/photo-1558904541-efa8c1965f1e?auto=format&fit=crop&q=80&w=2000" 
@@ -183,26 +312,32 @@ export default function App() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="max-w-2xl"
+              className="max-w-3xl mx-auto md:mx-0 text-center md:text-left"
             >
-              <span className="inline-block px-4 py-1 rounded bg-brand-accent/20 text-brand-accent font-mono text-sm mb-6 border border-brand-accent/30">
+              <span className="inline-block px-4 py-1 rounded bg-brand-accent/20 text-brand-accent font-mono text-sm mb-4 mt-4 md:mt-0 border border-brand-accent/30">
                 Licensed & Insured
               </span>
-              <h1 className="text-5xl md:text-7xl text-white font-bold leading-[1.1] mb-8">
-                Plymouth’s High-End <br />
+              <h1 className="text-4xl md:text-7xl text-white font-bold leading-[1.1] mb-6">
+                Plymouth’s High-End <br className="hidden md:block" />
                 <span className="text-brand-accent">Outdoor Specialists.</span>
               </h1>
-              <p className="text-xl text-gray-200 mb-10 leading-relaxed">
+              <p className="text-lg md:text-xl text-gray-200 mb-8 leading-relaxed max-w-2xl mx-auto md:mx-0">
                 Premium landscaping and irrigation solutions built for Michigan seasons and soil. 
                 Transforming Southeast Michigan properties for over two decades.
               </p>
-              <div className="flex flex-wrap gap-4">
-                <a href="#" className="btn-primary text-lg px-8 py-4">
+              <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-4">
+                <button 
+                  onClick={() => setCurrentPage('contact')}
+                  className="btn-primary text-lg px-8 py-4 w-full sm:w-auto"
+                >
                   Request a Quote <ArrowUpRight className="ml-2" size={20} />
-                </a>
-                <a href="#" className="btn-secondary !border-white !text-white hover:!bg-white hover:!text-brand-bg text-lg px-8 py-4">
+                </button>
+                <button 
+                  onClick={() => setCurrentPage('services')}
+                  className="btn-secondary !border-white !text-white hover:!bg-white hover:!text-brand-bg text-lg px-8 py-4 w-full sm:w-auto"
+                >
                   Our Services
-                </a>
+                </button>
               </div>
             </motion.div>
           </div>
@@ -241,9 +376,12 @@ export default function App() {
                   our landscaping services create and maintain beautiful outdoor spaces built to last.
                 </p>
               </div>
-              <a href="#" className="flex items-center gap-2 text-brand-primary font-bold group">
+              <button 
+                onClick={() => setCurrentPage('services')}
+                className="flex items-center gap-2 text-brand-primary font-bold group"
+              >
                 View All Services <ArrowRight className="group-hover:translate-x-2 transition-transform" />
-              </a>
+              </button>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -265,9 +403,12 @@ export default function App() {
                       </li>
                     ))}
                   </ul>
-                  <a href="#" className="absolute bottom-8 right-8 w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center group-hover:bg-brand-bg group-hover:text-white transition-all">
+                  <button 
+                    onClick={() => setCurrentPage('services')}
+                    className="absolute bottom-8 right-8 w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center group-hover:bg-brand-bg group-hover:text-white transition-all"
+                  >
                     <ArrowRight size={18} />
-                  </a>
+                  </button>
                 </motion.div>
               ))}
             </div>
@@ -301,31 +442,18 @@ export default function App() {
                   Unmatched Quality, <br />
                   Local Expertise
                 </h2>
-                <div className="space-y-8">
-                  {[
-                    {
-                      title: "Reliability",
-                      desc: "Your time matters to us. We arrive on schedule and complete each job with care, leaving your property clean and well-maintained."
-                    },
-                    {
-                      title: "Professionalism",
-                      desc: "Our Plymouth team brings skilled expertise to every property, ensuring clear communication and quality results."
-                    },
-                    {
-                      title: "Local Knowledge",
-                      desc: "As your neighbors in Southeast Michigan, we understand the specific challenges in Plymouth, Canton, and Northville."
-                    }
-                  ].map((item) => (
-                    <div key={item.title} className="flex gap-6">
-                      <div className="flex-shrink-0 w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-brand-accent font-bold">
-                        {item.title[0]}
-                      </div>
-                      <div>
-                        <h4 className="text-xl font-bold mb-2">{item.title}</h4>
-                        <p className="text-gray-400 leading-relaxed">{item.desc}</p>
-                      </div>
-                    </div>
-                  ))}
+                <div className="space-y-6 text-gray-400 text-lg leading-relaxed">
+                  <p>
+                    At Keegan Bros, we’re a small, specialized team of three based right here in Plymouth, MI. 
+                    With years of combined experience in landscaping and home services, we pride ourselves 
+                    on our personalized approach and attention to detail.
+                  </p>
+                  <p>
+                    We believe in building strong relationships with our clients and providing high-quality, 
+                    tailored services that transform your outdoor spaces. No job is too big or small — 
+                    when you work with us, you’re working directly with the people who care most about 
+                    your vision and your property.
+                  </p>
                 </div>
               </div>
             </div>
@@ -344,11 +472,11 @@ export default function App() {
             {[
               {
                 name: "Juliana Leland",
-                text: "Creative Edge has been taking care of my lawn for about a year now. They are always there same time every week. It is such a relief to come home from work and see such an amazing job done."
+                text: "Keegan Bros has been taking care of my lawn for about a year now. They are always there same time every week. It is such a relief to come home from work and see such an amazing job done."
               },
               {
                 name: "Tiffany Mathers",
-                text: "Creative Edge did an amazing job getting my sprinkler system back up and running at our home in Plymouth MI. The same day service made it super nice."
+                text: "Keegan Bros did an amazing job getting my sprinkler system back up and running at our home in Plymouth MI. The same day service made it super nice."
               },
               {
                 name: "Chris Binney",
@@ -398,7 +526,7 @@ export default function App() {
                       <option>Select Service</option>
                       <option>Landscaping</option>
                       <option>Irrigation</option>
-                      <option>Lawn Maintenance</option>
+                      <option>Lawn Care</option>
                     </select>
                     <textarea placeholder="Message" rows={4} className="w-full bg-white/10 border border-white/20 rounded px-4 py-3 focus:outline-none focus:border-brand-accent transition-colors placeholder:text-white/50"></textarea>
                     <button className="w-full bg-brand-accent text-brand-bg font-bold py-4 rounded hover:bg-white transition-colors">
@@ -411,44 +539,63 @@ export default function App() {
           </div>
         </section>
 
-        {/* Blog Section */}
-        <section className="py-24 bg-white">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="flex justify-between items-end mb-12">
-              <h2 className="text-4xl font-bold">Latest from the Blog</h2>
-              <a href="#" className="text-brand-primary font-bold flex items-center gap-2 group">
-                Read All Posts <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-              </a>
-            </div>
-            <div className="grid md:grid-cols-2 gap-8">
-              {[
-                {
-                  title: "Best Landscaping Plants for Plymouth MI",
-                  date: "March 21, 2026",
-                  image: "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&q=80&w=1000"
-                },
-                {
-                  title: "Complete Guide to Outdoor Lighting",
-                  date: "March 15, 2026",
-                  image: "https://images.unsplash.com/photo-1563298723-dcfebaa392e3?auto=format&fit=crop&q=80&w=1000"
-                }
-              ].map(post => (
-                <a key={post.title} href="#" className="group block">
-                  <div className="aspect-[16/9] rounded overflow-hidden mb-6">
-                    <img 
-                      src={post.image} 
-                      alt={post.title} 
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      referrerPolicy="no-referrer"
-                    />
-                  </div>
-                  <div className="text-sm text-gray-500 font-mono mb-2 uppercase tracking-wider">{post.date}</div>
-                  <h3 className="text-2xl font-bold group-hover:text-brand-primary transition-colors">{post.title}</h3>
-                </a>
-              ))}
-            </div>
-          </div>
-        </section>
+            {/* Blog Section */}
+            <section className="py-24 bg-white">
+              <div className="max-w-7xl mx-auto px-4">
+                <div className="flex justify-between items-end mb-12">
+                  <h2 className="text-4xl font-bold">Latest from the Blog</h2>
+                  <a href="#" className="text-brand-primary font-bold flex items-center gap-2 group">
+                    Read All Posts <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                  </a>
+                </div>
+                <div className="grid md:grid-cols-2 gap-8">
+                  {[
+                    {
+                      title: "Best Landscaping Plants for Plymouth MI",
+                      date: "March 21, 2026",
+                      image: "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&q=80&w=1000"
+                    },
+                    {
+                      title: "Complete Guide to Outdoor Lighting",
+                      date: "March 15, 2026",
+                      image: "https://images.unsplash.com/photo-1563298723-dcfebaa392e3?auto=format&fit=crop&q=80&w=1000"
+                    }
+                  ].map(post => (
+                    <a key={post.title} href="#" className="group block">
+                      <div className="aspect-[16/9] rounded overflow-hidden mb-6">
+                        <img 
+                          src={post.image} 
+                          alt={post.title} 
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          referrerPolicy="no-referrer"
+                        />
+                      </div>
+                      <div className="text-sm text-gray-500 font-mono mb-2 uppercase tracking-wider">{post.date}</div>
+                      <h3 className="text-2xl font-bold group-hover:text-brand-primary transition-colors">{post.title}</h3>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </section>
+          </>
+        ) : currentPage === 'services' ? (
+          <ServicesPage 
+            services={services} 
+            phoneNumber="(734) 865-8608" 
+            onNavigateToContact={() => setCurrentPage('contact')}
+          />
+        ) : currentPage === 'contact' ? (
+          <ContactPage phoneNumber="(734) 865-8608" />
+        ) : currentPage === 'gallery' ? (
+          <GalleryPage />
+        ) : (
+          currentServiceId && serviceDetails[currentServiceId] && (
+            <ServiceDetailPage 
+              service={serviceDetails[currentServiceId]} 
+              phoneNumber="(734) 865-8608" 
+            />
+          )
+        )}
       </main>
 
       {/* Footer */}
@@ -465,8 +612,7 @@ export default function App() {
                 </span>
               </a>
               <p className="text-gray-400 mb-8 leading-relaxed">
-                Transforming outdoor spaces with quality and local expertise since 2002. 
-                Your trusted partner for landscaping and irrigation in Southeast Michigan.
+                Tailored services that enhance your landscape in every season, we ensure your outdoor spaces are stunning year-round.
               </p>
               <div className="flex gap-4">
                 <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand-primary transition-colors">
@@ -484,9 +630,9 @@ export default function App() {
             <div>
               <h4 className="text-lg font-bold mb-6">Services</h4>
               <ul className="space-y-4 text-gray-400">
-                <li><a href="#" className="hover:text-white transition-colors">Landscaping</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Lawn Services</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Irrigation</a></li>
+                <li><a href="#" onClick={(e) => { e.preventDefault(); setCurrentPage('services'); }} className="hover:text-white transition-colors">Landscaping</a></li>
+                <li><a href="#" onClick={(e) => { e.preventDefault(); setCurrentPage('services'); }} className="hover:text-white transition-colors">Lawn Care</a></li>
+                <li><a href="#" onClick={(e) => { e.preventDefault(); setCurrentPage('services'); }} className="hover:text-white transition-colors">Irrigation</a></li>
               </ul>
             </div>
 
@@ -494,9 +640,8 @@ export default function App() {
               <h4 className="text-lg font-bold mb-6">Resources</h4>
               <ul className="space-y-4 text-gray-400">
                 <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Service Areas</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">FAQ</a></li>
+                <li><a href="#" onClick={(e) => { e.preventDefault(); setCurrentPage('contact'); }} className="hover:text-white transition-colors">Contact</a></li>
+                <li><a href="#" onClick={(e) => { e.preventDefault(); setCurrentPage('gallery'); }} className="hover:text-white transition-colors">Gallery</a></li>
               </ul>
             </div>
 
