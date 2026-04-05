@@ -299,7 +299,7 @@ export default function App() {
             <section className="relative min-h-[90vh] flex items-center overflow-hidden">
           <div className="absolute inset-0 z-0">
             <img 
-              src="https://images.unsplash.com/photo-1558904541-efa8c1965f1e?auto=format&fit=crop&q=80&w=2000" 
+              src="https://lh3.googleusercontent.com/d/1RHYTnhW3UFxMu3KQ1G6uJG3WKWEB9-WG" 
               alt="Beautiful landscape" 
               className="w-full h-full object-cover"
               referrerPolicy="no-referrer"
@@ -319,7 +319,7 @@ export default function App() {
               </span>
               <h1 className="text-4xl md:text-7xl text-white font-bold leading-[1.1] mb-6">
                 Plymouth’s High-End <br className="hidden md:block" />
-                <span className="text-brand-accent">Outdoor Specialists.</span>
+                <span className="text-brand-accent">Landscaping Specialists.</span>
               </h1>
               <p className="text-lg md:text-xl text-gray-200 mb-8 leading-relaxed max-w-2xl mx-auto md:mx-0">
                 Premium landscaping and irrigation solutions built for Michigan seasons and soil. 
