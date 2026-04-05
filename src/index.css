@@ -6,12 +6,12 @@
   --font-serif: "Playfair Display", serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
-  --color-brand-primary: #2D5A27;
-  --color-brand-secondary: #4F6D4F;
-  --color-brand-accent: #A3B18A;
-  --color-brand-bg: #1A241A;
-  --color-brand-text: #1A241A;
-  --color-brand-link: #2D5A27;
+  --color-brand-primary: #004AAD;
+  --color-brand-secondary: #0077B6;
+  --color-brand-accent: #90E0EF;
+  --color-brand-bg: #03045E;
+  --color-brand-text: #03045E;
+  --color-brand-link: #004AAD;
 
   --radius: 7px;
 }

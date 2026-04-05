@@ -94,7 +94,7 @@ export default function ServicesPage({ services, phoneNumber, onNavigateToContac
         {/* Sidebar */}
         <aside className="lg:w-1/3 space-y-8">
           {/* Call to Action Box */}
-          <div className="bg-[#1a4731] text-white p-8 rounded-xl shadow-xl text-center border-t-8 border-brand-accent">
+          <div className="bg-brand-primary text-white p-8 rounded-xl shadow-xl text-center border-t-8 border-brand-accent">
             <p className="text-sm font-medium mb-2 opacity-90 uppercase tracking-wider">Call or Text Now!</p>
             <a href={`tel:${phoneNumber}`} className="text-3xl md:text-4xl font-bold hover:text-brand-accent transition-colors block">
               {phoneNumber}
@@ -105,7 +105,7 @@ export default function ServicesPage({ services, phoneNumber, onNavigateToContac
           {services.map((category) => (
             <div key={category.title} className="bg-gray-50 rounded-xl overflow-hidden border border-gray-200 shadow-sm">
               <div className="bg-white px-6 py-4 border-b border-gray-200">
-                <h4 className="text-lg font-bold text-[#1a4731]">{category.title === 'Lawn Care' ? 'Lawn Care & Maintenance' : category.title + ' Services'}</h4>
+                <h4 className="text-lg font-bold text-brand-primary">{category.title === 'Lawn Care' ? 'Lawn Care & Maintenance' : category.title + ' Services'}</h4>
               </div>
               <div className="p-6">
                 <ul className="space-y-3">
@@ -117,7 +117,7 @@ export default function ServicesPage({ services, phoneNumber, onNavigateToContac
                   ))}
                 </ul>
               </div>
-              <div className="h-2 bg-[#1a4731]"></div>
+              <div className="h-2 bg-brand-primary"></div>
             </div>
           ))}
         </aside>

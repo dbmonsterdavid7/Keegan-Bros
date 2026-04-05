@@ -99,15 +99,15 @@ export default function App() {
       </div>
 
       {/* Header */}
-      <header className={`glass-header transition-all duration-300 ${scrolled ? 'py-2' : 'py-4'}`}>
+      <header className={`glass-header transition-all duration-300 ${scrolled ? 'py-1.5' : 'py-3'}`}>
         <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
           <a href="/" onClick={(e) => { e.preventDefault(); setCurrentPage('home'); }} className="flex items-center gap-2 group">
-            <div className="bg-brand-primary p-2 rounded group-hover:rotate-12 transition-transform">
-              <Trees className="text-white" size={24} />
-            </div>
-            <span className="text-2xl font-serif font-bold text-brand-text tracking-tighter">
-              Keegan Bros<span className="text-brand-accent">.</span>
-            </span>
+            <img 
+              src="https://lh3.googleusercontent.com/d/1VHEG7JRlpedJanRJlpssfKTow6plN5Ds" 
+              alt="Keegan Bros Landscaping Logo" 
+              className="h-10 md:h-12 w-auto object-contain"
+              referrerPolicy="no-referrer"
+            />
           </a>
 
           {/* Desktop Nav */}
@@ -604,12 +604,12 @@ export default function App() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
             <div className="col-span-1 lg:col-span-1">
               <a href="/" className="flex items-center gap-2 mb-6">
-                <div className="bg-brand-primary p-2 rounded">
-                  <Trees className="text-white" size={20} />
-                </div>
-                <span className="text-2xl font-serif font-bold tracking-tighter">
-                  Keegan Bros<span className="text-brand-accent">.</span>
-                </span>
+                <img 
+                  src="https://lh3.googleusercontent.com/d/1VHEG7JRlpedJanRJlpssfKTow6plN5Ds" 
+                  alt="Keegan Bros Landscaping Logo" 
+                  className="h-12 w-auto object-contain"
+                  referrerPolicy="no-referrer"
+                />
               </a>
               <p className="text-gray-400 mb-8 leading-relaxed">
                 Tailored services that enhance your landscape in every season, we ensure your outdoor spaces are stunning year-round.
