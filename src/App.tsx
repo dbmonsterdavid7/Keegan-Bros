@@ -4,7 +4,7 @@
  */
 
 import { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, Link, useNavigate, useLocation, useParams } from 'react-router-dom';
 import { 
   Menu, 
   X, 
@@ -305,8 +305,6 @@ function ServiceDetailWrapper({ phoneNumber }: { phoneNumber: string }) {
 
   return <ServiceDetailPage service={service} phoneNumber={phoneNumber} />;
 }
-
-import { useParams } from 'react-router-dom';
 
 export default function App() {
   const phoneNumber = "(734) 865-8608";
