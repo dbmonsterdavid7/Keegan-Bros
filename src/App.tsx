@@ -283,7 +283,7 @@ function Navigation() {
               </Link>
               <Link 
                 to="/contact"
-                className="text-red-600 font-bold text-left"
+                className="text-brand-primary text-left"
               >
                 Get a Quote
               </Link>

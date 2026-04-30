@@ -36,12 +36,12 @@ export default function HomePage({ services, areas }: HomePageProps) {
               Licensed & Insured
             </span>
             <h1 className="text-4xl md:text-7xl text-white font-bold leading-[1.1] mb-6">
-              Plymouth’s High-End <br className="hidden md:block" />
-              <span className="text-brand-accent">Landscaping Specialists.</span>
+              Southeast Michigan's <br className="hidden md:block" />
+              <span className="text-brand-accent">Leading Landscaping Company</span>
             </h1>
             <p className="text-lg md:text-xl text-gray-200 mb-8 leading-relaxed max-w-2xl mx-auto md:mx-0">
               Premium landscaping and irrigation solutions built for Michigan seasons and soil. 
-              Transforming Southeast Michigan properties for over two decades.
+              Transforming Southeast Michigan properties for over half a decade.
             </p>
             <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-4">
               <Link 
