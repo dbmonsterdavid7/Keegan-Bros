@@ -1,5 +1,6 @@
 import React from 'react';
 import { Phone, ChevronRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 interface ServiceCategory {
   title: string;
@@ -9,12 +10,13 @@ interface ServiceCategory {
 interface ServicesPageProps {
   services: ServiceCategory[];
   phoneNumber: string;
-  onNavigateToContact: () => void;
 }
 
-export default function ServicesPage({ services, phoneNumber, onNavigateToContact }: ServicesPageProps) {
+export default function ServicesPage({ services, phoneNumber }: ServicesPageProps) {
+  const getServiceId = (name: string) => name.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-');
+
   return (
-    <div className="max-w-7xl mx-auto px-4 py-12 md:py-20">
+    <div className="max-w-7xl mx-auto px-4 py-12 md:py-20 pt-28 lg:pt-32">
       <div className="flex flex-col lg:flex-row gap-12">
         {/* Main Content */}
         <div className="lg:w-2/3">
@@ -50,8 +52,10 @@ export default function ServicesPage({ services, phoneNumber, onNavigateToContac
                           <ChevronRight size={14} className="text-brand-primary" />
                         </div>
                         <div>
-                          <span className="font-bold text-brand-text">{item}:</span>
-                          <span className="text-gray-600 ml-2">
+                          <Link to={`/services/${getServiceId(item)}`} className="font-bold text-brand-text hover:text-brand-primary transition-colors block mb-1">
+                            {item}:
+                          </Link>
+                          <span className="text-gray-600">
                             {item === "Landscape Design & Build" && "We create custom designs and install landscapes that reflect your vision and elevate curb appeal."}
                             {item === "Landscape Maintenance" && "Keep your landscape healthy and attractive with regular care, including trimming, weeding, and inspections."}
                             {item === "Designs & Renderings" && "Visualize your future landscape with detailed designs and 3D renderings."}
@@ -73,12 +77,12 @@ export default function ServicesPage({ services, phoneNumber, onNavigateToContac
               ))}
             </div>
 
-            <button 
-              onClick={onNavigateToContact}
-              className="bg-brand-primary text-white px-8 py-4 rounded-full font-bold hover:bg-brand-primary/90 transition-all transform hover:scale-105 shadow-lg"
+            <Link 
+              to="/contact"
+              className="bg-brand-primary text-white px-8 py-4 rounded-full font-bold hover:bg-brand-primary/90 transition-all inline-block shadow-lg"
             >
               Get a Quote
-            </button>
+            </Link>
           </div>
 
           <div className="mt-16 overflow-hidden rounded-xl shadow-2xl">
@@ -110,9 +114,11 @@ export default function ServicesPage({ services, phoneNumber, onNavigateToContac
               <div className="p-6">
                 <ul className="space-y-3">
                   {category.items.map((item) => (
-                    <li key={item} className="flex items-center gap-3 text-gray-600 hover:text-brand-primary transition-colors cursor-pointer group">
-                      <ChevronRight size={16} className="text-brand-accent group-hover:translate-x-1 transition-transform" />
-                      <span className="text-sm font-medium">{item}</span>
+                    <li key={item}>
+                      <Link to={`/services/${getServiceId(item)}`} className="flex items-center gap-3 text-gray-600 hover:text-brand-primary transition-colors group">
+                        <ChevronRight size={16} className="text-brand-accent group-hover:translate-x-1 transition-transform" />
+                        <span className="text-sm font-medium">{item}</span>
+                      </Link>
                     </li>
                   ))}
                 </ul>

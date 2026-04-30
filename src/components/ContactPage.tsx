@@ -8,7 +8,7 @@ interface ContactPageProps {
 
 export default function ContactPage({ phoneNumber }: ContactPageProps) {
   return (
-    <div className="bg-white pt-32 pb-24">
+    <div className="bg-white pt-28 lg:pt-32 pb-24">
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-16">
           <motion.div
@@ -81,7 +81,7 @@ export default function ContactPage({ phoneNumber }: ContactPageProps) {
               <h4 className="text-xl font-serif font-bold text-brand-text mb-4">Why Choose Keegan Bros?</h4>
               <ul className="space-y-4">
                 {[
-                  "Small, specialized team of three",
+                  "Small, specialized team of six",
                   "Direct communication with owners",
                   "Personalized attention to detail",
                   "Local Plymouth expertise",
@@ -132,11 +132,10 @@ export default function ContactPage({ phoneNumber }: ContactPageProps) {
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-bold text-gray-700 uppercase tracking-wider">Phone Number*</label>
+                    <label className="text-sm font-bold text-gray-700 uppercase tracking-wider">Phone Number</label>
                     <input 
                       type="tel" 
                       placeholder="Enter your phone number" 
-                      required
                       className="w-full bg-gray-50 border border-gray-200 rounded px-4 py-4 focus:outline-none focus:border-brand-primary transition-colors"
                     />
                   </div>
@@ -154,13 +153,13 @@ export default function ContactPage({ phoneNumber }: ContactPageProps) {
 
                 <div className="space-y-2">
                   <label className="text-sm font-bold text-gray-700 uppercase tracking-wider">Service Interested In*</label>
-                  <select className="w-full bg-gray-50 border border-gray-200 rounded px-4 py-4 focus:outline-none focus:border-brand-primary transition-colors text-gray-600">
-                    <option>Select a service</option>
-                    <option>Landscape Design & Build</option>
-                    <option>Landscape Maintenance</option>
-                    <option>Lawn Care Services</option>
-                    <option>Irrigation & Sprinklers</option>
-                    <option>Other</option>
+                  <select className="w-full bg-gray-50 border border-gray-200 rounded px-4 py-4 focus:outline-none focus:border-brand-primary transition-colors text-black">
+                    <option className="text-black">Select a service</option>
+                    <option className="text-black">Landscape Design & Build</option>
+                    <option className="text-black">Landscape Maintenance</option>
+                    <option className="text-black">Lawn Care Services</option>
+                    <option className="text-black">Irrigation & Sprinklers</option>
+                    <option className="text-black">Other</option>
                   </select>
                 </div>
 

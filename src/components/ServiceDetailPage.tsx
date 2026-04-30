@@ -112,8 +112,7 @@ export default function ServiceDetailPage({ service, phoneNumber }: ServiceDetai
                   />
                   <input 
                     type="tel" 
-                    placeholder="Phone*" 
-                    required
+                    placeholder="Phone" 
                     className="w-full bg-white border border-gray-200 rounded px-4 py-3 focus:outline-none focus:border-brand-primary transition-colors text-sm"
                   />
                   <input 
@@ -142,13 +141,13 @@ export default function ServiceDetailPage({ service, phoneNumber }: ServiceDetai
                     required
                     className="w-full bg-white border border-gray-200 rounded px-4 py-3 focus:outline-none focus:border-brand-primary transition-colors text-sm"
                   />
-                  <select className="w-full bg-white border border-gray-200 rounded px-4 py-3 focus:outline-none focus:border-brand-primary transition-colors text-sm text-gray-500">
-                    <option>How Did You Hear About Us?*</option>
-                    <option>Google Search</option>
-                    <option>Social Media</option>
-                    <option>Referral</option>
-                    <option>Yard Sign</option>
-                    <option>Other</option>
+                  <select className="w-full bg-white border border-gray-200 rounded px-4 py-3 focus:outline-none focus:border-brand-primary transition-colors text-sm text-black">
+                    <option className="text-black">How Did You Hear About Us?*</option>
+                    <option className="text-black">Google Search</option>
+                    <option className="text-black">Social Media</option>
+                    <option className="text-black">Referral</option>
+                    <option className="text-black">Yard Sign</option>
+                    <option className="text-black">Other</option>
                   </select>
                   <textarea 
                     placeholder="Tell Us About Your Project*" 

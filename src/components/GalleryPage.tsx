@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Camera, ArrowRight, ExternalLink } from 'lucide-react';
+import { Camera, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const galleryImages = [
   {
@@ -43,7 +44,7 @@ const galleryImages = [
 
 export default function GalleryPage() {
   return (
-    <div className="pt-24 pb-24">
+    <div className="pt-28 lg:pt-32 pb-24">
       {/* Hero Section */}
       <section className="bg-brand-bg text-white py-20 mb-16">
         <div className="max-w-7xl mx-auto px-4 text-center">
@@ -110,12 +111,12 @@ export default function GalleryPage() {
               and custom design consultation.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <button className="btn-primary bg-brand-accent text-brand-bg hover:bg-white px-8 py-4">
+              <Link to="/contact" className="btn-primary bg-brand-accent text-brand-bg hover:bg-white px-8 py-4 inline-block">
                 Get a Free Quote
-              </button>
-              <button className="btn-secondary border-white text-white hover:bg-white hover:text-brand-primary px-8 py-4">
+              </Link>
+              <Link to="/contact" className="btn-secondary border-white text-white hover:bg-white hover:text-brand-primary px-8 py-4 inline-block">
                 Contact Us
-              </button>
+              </Link>
             </div>
           </div>
         </div>
