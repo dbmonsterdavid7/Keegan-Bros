@@ -62,7 +62,7 @@ export default function HomePage({ services, areas }: HomePageProps) {
       </section>
 
       {/* Stats / Trust Section */}
-      <section className="py-12 bg-gray-50 border-b border-gray-100">
+      <section className="py-8 md:py-12 bg-gray-50 border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
@@ -140,7 +140,7 @@ export default function HomePage({ services, areas }: HomePageProps) {
             <div className="relative">
               <div className="aspect-square rounded overflow-hidden">
                 <img 
-                  src="https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?auto=format&fit=crop&q=80&w=1000" 
+                  src="/regenerated_image_1777586429598.png" 
                   alt="Team working" 
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
