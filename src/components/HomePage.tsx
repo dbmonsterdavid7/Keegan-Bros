@@ -84,7 +84,7 @@ export default function HomePage({ services, areas }: HomePageProps) {
             {[
               { label: "Years Experience", value: "24+" },
               { label: "Projects Completed", value: "1.2k+" },
-              { label: "Service Areas", value: "6+" },
+              { label: "Service Areas", value: "10+" },
               { label: "Happy Clients", value: "98%" }
             ].map((stat) => (
               <div key={stat.label} className="text-center">

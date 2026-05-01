@@ -46,7 +46,7 @@ const services = [
   }
 ];
 
-const areas = ["Plymouth", "Canton", "Northville", "Livonia", "Ann Arbor", "Novi"];
+const areas = ["Plymouth", "Canton", "Northville", "Livonia", "Novi", "Ann Arbor", "Farmington Hills", "Westland", "Ypsilanti", "South Lyon"];
 
 function ScrollToTop() {
   const { pathname } = useLocation();
