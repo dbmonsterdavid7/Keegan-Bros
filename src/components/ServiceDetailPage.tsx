@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Phone, MapPin, Clock, CheckCircle2 } from 'lucide-react';
 import { motion } from 'motion/react';
 
@@ -20,6 +20,21 @@ interface ServiceDetailPageProps {
 }
 
 export default function ServiceDetailPage({ service, phoneNumber }: ServiceDetailPageProps) {
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = "https://link.msgsndr.com/js/form_embed.js";
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      // Clean up script on unmount
+      const existingScript = document.querySelector('script[src="https://link.msgsndr.com/js/form_embed.js"]');
+      if (existingScript && existingScript.parentNode) {
+        existingScript.parentNode.removeChild(existingScript);
+      }
+    };
+  }, []);
+
   return (
     <div className="bg-white pt-32 pb-24">
       <div className="max-w-7xl mx-auto px-4">
@@ -83,87 +98,24 @@ export default function ServiceDetailPage({ service, phoneNumber }: ServiceDetai
           {/* Sidebar Form */}
           <div className="lg:col-span-1">
             <div className="sticky top-32">
-              <div className="bg-gray-50 p-8 rounded-xl border border-gray-100 shadow-sm">
-                <div className="text-center mb-8">
-                  <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">REQUEST A</span>
-                  <h3 className="text-3xl font-serif font-bold text-brand-primary">Free Estimate</h3>
-                </div>
-
-                <form className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
-                    <input 
-                      type="text" 
-                      placeholder="First Name*" 
-                      required
-                      className="w-full bg-white border border-gray-200 rounded px-4 py-3 focus:outline-none focus:border-brand-primary transition-colors text-sm"
-                    />
-                    <input 
-                      type="text" 
-                      placeholder="Last Name*" 
-                      required
-                      className="w-full bg-white border border-gray-200 rounded px-4 py-3 focus:outline-none focus:border-brand-primary transition-colors text-sm"
-                    />
-                  </div>
-                  <input 
-                    type="email" 
-                    placeholder="Email*" 
-                    required
-                    className="w-full bg-white border border-gray-200 rounded px-4 py-3 focus:outline-none focus:border-brand-primary transition-colors text-sm"
-                  />
-                  <input 
-                    type="tel" 
-                    placeholder="Phone" 
-                    className="w-full bg-white border border-gray-200 rounded px-4 py-3 focus:outline-none focus:border-brand-primary transition-colors text-sm"
-                  />
-                  <input 
-                    type="text" 
-                    placeholder="Address*" 
-                    required
-                    className="w-full bg-white border border-gray-200 rounded px-4 py-3 focus:outline-none focus:border-brand-primary transition-colors text-sm"
-                  />
-                  <div className="grid grid-cols-2 gap-4">
-                    <input 
-                      type="text" 
-                      placeholder="City*" 
-                      required
-                      className="w-full bg-white border border-gray-200 rounded px-4 py-3 focus:outline-none focus:border-brand-primary transition-colors text-sm"
-                    />
-                    <input 
-                      type="text" 
-                      placeholder="State*" 
-                      required
-                      className="w-full bg-white border border-gray-200 rounded px-4 py-3 focus:outline-none focus:border-brand-primary transition-colors text-sm"
-                    />
-                  </div>
-                  <input 
-                    type="text" 
-                    placeholder="Zip Code*" 
-                    required
-                    className="w-full bg-white border border-gray-200 rounded px-4 py-3 focus:outline-none focus:border-brand-primary transition-colors text-sm"
-                  />
-                  <select className="w-full bg-white border border-gray-200 rounded px-4 py-3 focus:outline-none focus:border-brand-primary transition-colors text-sm text-black">
-                    <option className="text-black">How Did You Hear About Us?*</option>
-                    <option className="text-black">Google Search</option>
-                    <option className="text-black">Social Media</option>
-                    <option className="text-black">Referral</option>
-                    <option className="text-black">Yard Sign</option>
-                    <option className="text-black">Other</option>
-                  </select>
-                  <textarea 
-                    placeholder="Tell Us About Your Project*" 
-                    required
-                    rows={4}
-                    className="w-full bg-white border border-gray-200 rounded px-4 py-3 focus:outline-none focus:border-brand-primary transition-colors text-sm"
-                  ></textarea>
-                  
-                  <button className="w-full bg-brand-primary text-white font-bold py-4 rounded hover:bg-brand-bg transition-colors uppercase tracking-widest text-sm">
-                    Submit Request
-                  </button>
-                  
-                  <p className="text-[10px] text-gray-400 text-center mt-4 leading-tight">
-                    By submitting this form, I agree to the terms of use and privacy policy to OPT IN to be contacted by call, SMS text, or email related to my submission.
-                  </p>
-                </form>
+              <div className="bg-white rounded-xl border border-gray-100 shadow-xl overflow-hidden min-h-[700px]">
+                <iframe
+                  src="https://api.leadconnectorhq.com/widget/form/WmFafjY1fDuJCiwEIXGI"
+                  style={{ width: '100%', height: '100%', minHeight: '700px', border: 'none', borderRadius: '3px' }}
+                  id="inline-WmFafjY1fDuJCiwEIXGI" 
+                  data-layout="{'id':'INLINE'}"
+                  data-trigger-type="alwaysShow"
+                  data-trigger-value=""
+                  data-activation-type="alwaysActivated"
+                  data-activation-value=""
+                  data-deactivation-type="neverDeactivate"
+                  data-deactivation-value=""
+                  data-form-name="Contact Us"
+                  data-height="670"
+                  data-layout-iframe-id="inline-WmFafjY1fDuJCiwEIXGI"
+                  data-form-id="WmFafjY1fDuJCiwEIXGI"
+                  title="Contact Us"
+                ></iframe>
               </div>
             </div>
           </div>

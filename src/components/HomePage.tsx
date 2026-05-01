@@ -1,4 +1,5 @@
 
+import React, { useEffect } from 'react';
 import { motion } from 'motion/react';
 import { ArrowUpRight, ArrowRight, CheckCircle2, MapPin } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -10,6 +11,21 @@ interface HomePageProps {
 
 export default function HomePage({ services, areas }: HomePageProps) {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = "https://link.msgsndr.com/js/form_embed.js";
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      // Clean up script on unmount
+      const existingScript = document.querySelector('script[src="https://link.msgsndr.com/js/form_embed.js"]');
+      if (existingScript && existingScript.parentNode) {
+        existingScript.parentNode.removeChild(existingScript);
+      }
+    };
+  }, []);
 
   return (
     <>
@@ -46,7 +62,7 @@ export default function HomePage({ services, areas }: HomePageProps) {
             <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-4">
               <Link 
                 to="/contact"
-                className="btn-primary text-lg px-8 py-4 w-full sm:w-auto flex items-center justify-center"
+                className="btn-primary border-2 border-white/20 text-lg px-8 py-4 w-full sm:w-auto flex items-center justify-center"
               >
                 Request a Quote <ArrowUpRight className="ml-2" size={20} />
               </Link>
@@ -140,7 +156,7 @@ export default function HomePage({ services, areas }: HomePageProps) {
             <div className="relative">
               <div className="aspect-square rounded overflow-hidden">
                 <img 
-                  src="/regenerated_image_1777586429598.png" 
+                  src="https://lh3.googleusercontent.com/d/1Wa94mjyaaBUH7DPlvrK1ZgMoOv5NQpK9" 
                   alt="Team working" 
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
@@ -235,22 +251,24 @@ export default function HomePage({ services, areas }: HomePageProps) {
                   ))}
                 </div>
               </div>
-              <div className="bg-white/10 backdrop-blur-md rounded p-8 border border-white/20">
-                <h3 className="text-2xl font-bold mb-6">Request a Free Estimate</h3>
-                <form className="space-y-4">
-                  <input type="text" placeholder="Full Name" className="w-full bg-white/10 border border-white/20 rounded px-4 py-3 focus:outline-none focus:border-brand-accent transition-colors placeholder:text-white/50" />
-                  <input type="email" placeholder="Email Address" className="w-full bg-white/10 border border-white/20 rounded px-4 py-3 focus:outline-none focus:border-brand-accent transition-colors placeholder:text-white/50" />
-                  <select className="w-full bg-white border border-white/20 rounded px-4 py-3 focus:outline-none focus:border-brand-accent transition-colors text-black">
-                    <option className="text-black">Select Service</option>
-                    <option className="text-black">Landscaping</option>
-                    <option className="text-black">Irrigation</option>
-                    <option className="text-black">Lawn Care</option>
-                  </select>
-                  <textarea placeholder="Message" rows={4} className="w-full bg-white/10 border border-white/20 rounded px-4 py-3 focus:outline-none focus:border-brand-accent transition-colors placeholder:text-white/50"></textarea>
-                  <button className="w-full bg-brand-accent text-brand-bg font-bold py-4 rounded hover:bg-white transition-colors">
-                    Send Request
-                  </button>
-                </form>
+              <div className="bg-white rounded p-1 border border-white/20 overflow-hidden min-h-[600px]">
+                <iframe
+                  src="https://api.leadconnectorhq.com/widget/form/WmFafjY1fDuJCiwEIXGI"
+                  style={{ width: '100%', height: '100%', minHeight: '600px', border: 'none', borderRadius: '3px' }}
+                  id="inline-WmFafjY1fDuJCiwEIXGI" 
+                  data-layout="{'id':'INLINE'}"
+                  data-trigger-type="alwaysShow"
+                  data-trigger-value=""
+                  data-activation-type="alwaysActivated"
+                  data-activation-value=""
+                  data-deactivation-type="neverDeactivate"
+                  data-deactivation-value=""
+                  data-form-name="Contact Us"
+                  data-height="670"
+                  data-layout-iframe-id="inline-WmFafjY1fDuJCiwEIXGI"
+                  data-form-id="WmFafjY1fDuJCiwEIXGI"
+                  title="Contact Us"
+                ></iframe>
               </div>
             </div>
           </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Phone, MapPin, Clock, Mail } from 'lucide-react';
 import { motion } from 'motion/react';
 
@@ -7,6 +7,21 @@ interface ContactPageProps {
 }
 
 export default function ContactPage({ phoneNumber }: ContactPageProps) {
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = "https://link.msgsndr.com/js/form_embed.js";
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      // Clean up script on unmount
+      const existingScript = document.querySelector('script[src="https://link.msgsndr.com/js/form_embed.js"]');
+      if (existingScript && existingScript.parentNode) {
+        existingScript.parentNode.removeChild(existingScript);
+      }
+    };
+  }, []);
+
   return (
     <div className="bg-white pt-28 lg:pt-32 pb-24">
       <div className="max-w-7xl mx-auto px-4">
@@ -98,90 +113,24 @@ export default function ContactPage({ phoneNumber }: ContactPageProps) {
 
           {/* Form */}
           <div className="lg:col-span-2">
-            <div className="bg-white p-8 md:p-12 rounded-xl border border-gray-100 shadow-xl">
-              <form className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="text-sm font-bold text-gray-700 uppercase tracking-wider">First Name*</label>
-                    <input 
-                      type="text" 
-                      placeholder="Enter your first name" 
-                      required
-                      className="w-full bg-gray-50 border border-gray-200 rounded px-4 py-4 focus:outline-none focus:border-brand-primary transition-colors"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-bold text-gray-700 uppercase tracking-wider">Last Name*</label>
-                    <input 
-                      type="text" 
-                      placeholder="Enter your last name" 
-                      required
-                      className="w-full bg-gray-50 border border-gray-200 rounded px-4 py-4 focus:outline-none focus:border-brand-primary transition-colors"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="text-sm font-bold text-gray-700 uppercase tracking-wider">Email Address*</label>
-                    <input 
-                      type="email" 
-                      placeholder="Enter your email" 
-                      required
-                      className="w-full bg-gray-50 border border-gray-200 rounded px-4 py-4 focus:outline-none focus:border-brand-primary transition-colors"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-bold text-gray-700 uppercase tracking-wider">Phone Number</label>
-                    <input 
-                      type="tel" 
-                      placeholder="Enter your phone number" 
-                      className="w-full bg-gray-50 border border-gray-200 rounded px-4 py-4 focus:outline-none focus:border-brand-primary transition-colors"
-                    />
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <label className="text-sm font-bold text-gray-700 uppercase tracking-wider">Project Address*</label>
-                  <input 
-                    type="text" 
-                    placeholder="Street address, city, state, zip" 
-                    required
-                    className="w-full bg-gray-50 border border-gray-200 rounded px-4 py-4 focus:outline-none focus:border-brand-primary transition-colors"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <label className="text-sm font-bold text-gray-700 uppercase tracking-wider">Service Interested In*</label>
-                  <select className="w-full bg-gray-50 border border-gray-200 rounded px-4 py-4 focus:outline-none focus:border-brand-primary transition-colors text-black">
-                    <option className="text-black">Select a service</option>
-                    <option className="text-black">Landscape Design & Build</option>
-                    <option className="text-black">Landscape Maintenance</option>
-                    <option className="text-black">Lawn Care Services</option>
-                    <option className="text-black">Irrigation & Sprinklers</option>
-                    <option className="text-black">Other</option>
-                  </select>
-                </div>
-
-                <div className="space-y-2">
-                  <label className="text-sm font-bold text-gray-700 uppercase tracking-wider">Project Details*</label>
-                  <textarea 
-                    placeholder="Tell us about your vision, specific needs, or any questions you have." 
-                    required
-                    rows={6}
-                    className="w-full bg-gray-50 border border-gray-200 rounded px-4 py-4 focus:outline-none focus:border-brand-primary transition-colors"
-                  ></textarea>
-                </div>
-                
-                <button className="w-full bg-brand-primary text-white font-bold py-5 rounded-lg hover:bg-brand-bg transition-all uppercase tracking-widest shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-                  Submit Estimate Request
-                </button>
-                
-                <p className="text-xs text-gray-400 text-center leading-relaxed">
-                  By submitting this form, you agree to be contacted by Keegan Bros regarding your request. 
-                  We respect your privacy and will never share your information with third parties.
-                </p>
-              </form>
+            <div className="bg-white rounded-xl border border-gray-100 shadow-xl p-8 md:p-12">
+              <iframe
+                src="https://api.leadconnectorhq.com/widget/form/WmFafjY1fDuJCiwEIXGI"
+                style={{ width: '100%', height: '750px', border: 'none', borderRadius: '3px' }}
+                id="inline-WmFafjY1fDuJCiwEIXGI" 
+                data-layout="{'id':'INLINE'}"
+                data-trigger-type="alwaysShow"
+                data-trigger-value=""
+                data-activation-type="alwaysActivated"
+                data-activation-value=""
+                data-deactivation-type="neverDeactivate"
+                data-deactivation-value=""
+                data-form-name="Contact Us"
+                data-height="670"
+                data-layout-iframe-id="inline-WmFafjY1fDuJCiwEIXGI"
+                data-form-id="WmFafjY1fDuJCiwEIXGI"
+                title="Contact Us"
+              ></iframe>
             </div>
           </div>
         </div>
