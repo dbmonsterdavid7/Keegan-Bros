@@ -35,7 +35,7 @@ const services = [
     items: ["Landscape Design & Build", "Landscape Maintenance", "Designs & Renderings", "Sod Installation", "Plant & Tree Installation"]
   },
   {
-    title: "Lawn Care",
+    title: "Lawn & Garden Care",
     icon: <Shovel className="w-6 h-6" />,
     items: ["Yard Cleanups", "Mulching", "Plant Trimming & Pruning"]
   },
@@ -84,10 +84,14 @@ function Navigation() {
     navigate(`/services/${id}`);
   };
 
+  // Header states
+  const isHomePage = location.pathname === '/';
+  const isTransparent = !scrolled && isHomePage;
+
   return (
-    <>
+    <div className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
       {/* Top Bar */}
-      <div className="bg-brand-bg text-white py-2 px-4 hidden md:block">
+      <div className={`bg-brand-bg text-white px-4 hidden md:block transition-all duration-300 ${scrolled ? 'h-0 py-0 opacity-0 overflow-hidden' : 'py-2 opacity-100'}`}>
         <div className="max-w-7xl mx-auto flex justify-between items-center text-sm font-medium">
           <div className="flex gap-6">
             <div className="flex items-center gap-2">
@@ -107,13 +111,13 @@ function Navigation() {
       </div>
 
       {/* Header */}
-      <header className={`glass-header transition-all duration-300 ${scrolled ? 'py-1.5' : 'py-3'}`}>
+      <header className={`transition-all duration-300 ${scrolled ? 'glass-header-scrolled py-1.5' : `glass-header-transparent py-3 ${isTransparent ? 'text-white' : 'text-gray-900 bg-white'}`}`}>
         <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
           <Link to="/" className="flex items-center gap-2 group">
             <img 
-              src="https://lh3.googleusercontent.com/d/1VHEG7JRlpedJanRJlpssfKTow6plN5Ds" 
+              src={isTransparent ? "https://lh3.googleusercontent.com/d/1VHEG7JRlpedJanRJlpssfKTow6plN5Ds" : "https://lh3.googleusercontent.com/d/1VHEG7JRlpedJanRJlpssfKTow6plN5Ds"} 
               alt="Keegan Bros Landscaping Logo" 
-              className="h-10 md:h-12 w-auto object-contain"
+              className={`h-10 md:h-12 w-auto object-contain transition-all duration-300 ${isTransparent ? 'brightness-0 invert' : ''}`}
               referrerPolicy="no-referrer"
             />
           </Link>
@@ -127,7 +131,7 @@ function Navigation() {
             >
               <Link 
                 to="/services"
-                className="flex items-center gap-1 font-medium hover:text-brand-primary transition-colors"
+                className={`flex items-center gap-1 font-medium transition-colors ${isTransparent ? 'hover:text-brand-accent' : 'hover:text-brand-primary'}`}
                 onMouseEnter={() => setActiveMegaMenu('services')}
               >
                 Services <ChevronDown size={16} className={`transition-transform duration-300 ${activeMegaMenu === 'services' ? 'rotate-180' : ''}`} />
@@ -139,7 +143,7 @@ function Navigation() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 10 }}
-                    className="absolute top-full left-1/2 -translate-x-1/2 w-[800px] bg-white shadow-2xl rounded border border-gray-100 p-8 grid grid-cols-3 gap-8"
+                    className="absolute top-full left-1/2 -translate-x-1/2 w-[800px] bg-white shadow-2xl rounded border border-gray-100 p-8 grid grid-cols-3 gap-8 text-gray-900"
                   >
                     {services.map((service) => (
                       <div key={service.title}>
@@ -169,20 +173,20 @@ function Navigation() {
 
             <Link 
               to="/contact"
-              className="font-medium hover:text-brand-primary transition-colors"
+              className={`font-medium transition-colors ${isTransparent ? 'hover:text-brand-accent' : 'hover:text-brand-primary'}`}
             >
               Contact
             </Link>
-            <a href="#" className="font-medium hover:text-brand-primary transition-colors">About</a>
+            <a href="#" className={`font-medium transition-colors ${isTransparent ? 'hover:text-brand-accent' : 'hover:text-brand-primary'}`}>About</a>
             <Link 
               to="/gallery"
-              className="font-medium hover:text-brand-primary transition-colors"
+              className={`font-medium transition-colors ${isTransparent ? 'hover:text-brand-accent' : 'hover:text-brand-primary'}`}
             >
               Gallery
             </Link>
             <Link 
               to="/contact"
-              className="btn-primary"
+              className={`btn-primary ${isTransparent ? 'bg-white text-brand-bg hover:bg-brand-accent shadow-[0_0_30px_rgba(255,255,255,0.5),0_0_10px_rgba(255,255,255,0.3)]' : ''}`}
             >
               Get a Quote
             </Link>
@@ -192,12 +196,12 @@ function Navigation() {
           <div className="flex items-center gap-2 lg:hidden">
             <a 
               href="tel:7348658608" 
-              className="p-2 text-brand-primary hover:text-brand-accent transition-colors"
+              className={`p-2 transition-colors ${isTransparent ? 'text-white hover:text-brand-accent' : 'text-brand-primary hover:text-brand-accent'}`}
               aria-label="Call Us"
             >
               <Phone size={24} />
             </a>
-            <button className="p-2" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+            <button className={`p-2 ${isTransparent ? 'text-white' : 'text-gray-900'}`} onClick={() => setIsMenuOpen(!isMenuOpen)}>
               {isMenuOpen ? <X /> : <Menu />}
             </button>
           </div>
@@ -291,7 +295,7 @@ function Navigation() {
           </motion.div>
         )}
       </AnimatePresence>
-    </>
+    </div>
   );
 }
 
@@ -306,111 +310,119 @@ function ServiceDetailWrapper({ phoneNumber }: { phoneNumber: string }) {
   return <ServiceDetailPage service={service} phoneNumber={phoneNumber} />;
 }
 
-export default function App() {
+function AppContent() {
   const phoneNumber = "(734) 865-8608";
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
 
+  return (
+    <div className="min-h-screen flex flex-col">
+      <Navigation />
+
+      <main className={isHomePage ? '' : 'pt-24 lg:pt-32'}>
+        <Routes>
+          <Route path="/" element={
+            <HomePage 
+              services={services} 
+              areas={areas} 
+            />
+          } />
+          <Route path="/services" element={
+            <ServicesPage 
+              services={services} 
+              phoneNumber={phoneNumber} 
+            />
+          } />
+          <Route path="/services/:serviceId" element={<ServiceDetailWrapper phoneNumber={phoneNumber} />} />
+          <Route path="/contact" element={<ContactPage phoneNumber={phoneNumber} />} />
+          <Route path="/gallery" element={<GalleryPage />} />
+        </Routes>
+      </main>
+
+      {/* Footer */}
+      <footer className="bg-brand-bg text-white pt-20 pb-10">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+            <div className="col-span-1 lg:col-span-1">
+              <Link to="/" className="flex items-center gap-2 mb-6">
+                <img 
+                  src="https://lh3.googleusercontent.com/d/1VHEG7JRlpedJanRJlpssfKTow6plN5Ds" 
+                  alt="Keegan Bros Landscaping Logo" 
+                  className="h-12 w-auto object-contain brightness-0 invert"
+                  referrerPolicy="no-referrer"
+                />
+              </Link>
+              <p className="text-gray-400 mb-8 leading-relaxed">
+                Tailored services that enhance your landscape in every season, we ensure your outdoor spaces are stunning year-round.
+              </p>
+              <div className="flex gap-4">
+                <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand-primary transition-colors">
+                  <Instagram size={18} />
+                </a>
+                <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand-primary transition-colors">
+                  <Facebook size={18} />
+                </a>
+                <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand-primary transition-colors">
+                  <Twitter size={18} />
+                </a>
+              </div>
+            </div>
+
+            <div>
+              <h4 className="text-lg font-bold mb-6">Services</h4>
+              <ul className="space-y-4 text-gray-400">
+                <li><Link to="/services" className="hover:text-white transition-colors">Landscaping</Link></li>
+                <li><Link to="/services" className="hover:text-white transition-colors">Lawn & Garden Care</Link></li>
+                <li><Link to="/services" className="hover:text-white transition-colors">Irrigation</Link></li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-lg font-bold mb-6">Resources</h4>
+              <ul className="space-y-4 text-gray-400">
+                <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
+                <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
+                <li><Link to="/gallery" className="hover:text-white transition-colors">Gallery</Link></li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-lg font-bold mb-6">Contact Us</h4>
+              <ul className="space-y-4 text-gray-400">
+                <li className="flex items-center gap-3">
+                  <Phone size={18} className="text-brand-accent" />
+                  (734) 865-8608
+                </li>
+                <li className="flex items-start gap-3">
+                  <MapPin size={18} className="text-brand-accent mt-1" />
+                  123 Main St.<br />Plymouth, MI 48170
+                </li>
+                <li className="flex items-center gap-3">
+                  <Clock size={18} className="text-brand-accent" />
+                  Mon – Fri: 7am – 5pm
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
+            <p>© {new Date().getFullYear()} Keegan Bros Landscaping. All rights reserved.</p>
+            <div className="flex gap-6">
+              <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+              <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+export default function App() {
   return (
     <Router>
       <ScrollToTop />
-      <div className="min-h-screen flex flex-col">
-        <Navigation />
-
-        <main>
-          <Routes>
-            <Route path="/" element={
-              <HomePage 
-                services={services} 
-                areas={areas} 
-              />
-            } />
-            <Route path="/services" element={
-              <ServicesPage 
-                services={services} 
-                phoneNumber={phoneNumber} 
-              />
-            } />
-            <Route path="/services/:serviceId" element={<ServiceDetailWrapper phoneNumber={phoneNumber} />} />
-            <Route path="/contact" element={<ContactPage phoneNumber={phoneNumber} />} />
-            <Route path="/gallery" element={<GalleryPage />} />
-          </Routes>
-        </main>
-
-        {/* Footer */}
-        <footer className="bg-brand-bg text-white pt-20 pb-10">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-              <div className="col-span-1 lg:col-span-1">
-                <Link to="/" className="flex items-center gap-2 mb-6">
-                  <img 
-                    src="https://lh3.googleusercontent.com/d/1VHEG7JRlpedJanRJlpssfKTow6plN5Ds" 
-                    alt="Keegan Bros Landscaping Logo" 
-                    className="h-12 w-auto object-contain"
-                    referrerPolicy="no-referrer"
-                  />
-                </Link>
-                <p className="text-gray-400 mb-8 leading-relaxed">
-                  Tailored services that enhance your landscape in every season, we ensure your outdoor spaces are stunning year-round.
-                </p>
-                <div className="flex gap-4">
-                  <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand-primary transition-colors">
-                    <Instagram size={18} />
-                  </a>
-                  <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand-primary transition-colors">
-                    <Facebook size={18} />
-                  </a>
-                  <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand-primary transition-colors">
-                    <Twitter size={18} />
-                  </a>
-                </div>
-              </div>
-
-              <div>
-                <h4 className="text-lg font-bold mb-6">Services</h4>
-                <ul className="space-y-4 text-gray-400">
-                  <li><Link to="/services" className="hover:text-white transition-colors">Landscaping</Link></li>
-                  <li><Link to="/services" className="hover:text-white transition-colors">Lawn Care</Link></li>
-                  <li><Link to="/services" className="hover:text-white transition-colors">Irrigation</Link></li>
-                </ul>
-              </div>
-
-              <div>
-                <h4 className="text-lg font-bold mb-6">Resources</h4>
-                <ul className="space-y-4 text-gray-400">
-                  <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
-                  <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
-                  <li><Link to="/gallery" className="hover:text-white transition-colors">Gallery</Link></li>
-                </ul>
-              </div>
-
-              <div>
-                <h4 className="text-lg font-bold mb-6">Contact Us</h4>
-                <ul className="space-y-4 text-gray-400">
-                  <li className="flex items-center gap-3">
-                    <Phone size={18} className="text-brand-accent" />
-                    (734) 865-8608
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <MapPin size={18} className="text-brand-accent mt-1" />
-                    123 Main St.<br />Plymouth, MI 48170
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <Clock size={18} className="text-brand-accent" />
-                    Mon – Fri: 7am – 5pm
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
-              <p>© {new Date().getFullYear()} Keegan Bros Landscaping. All rights reserved.</p>
-              <div className="flex gap-6">
-                <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-                <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-              </div>
-            </div>
-          </div>
-        </footer>
-      </div>
+      <AppContent />
     </Router>
   );
 }

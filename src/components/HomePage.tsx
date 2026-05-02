@@ -233,9 +233,9 @@ export default function HomePage({ services, areas }: HomePageProps) {
       {/* Service Areas */}
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="bg-brand-primary rounded p-12 md:p-20 text-white relative overflow-hidden">
+          <div className="bg-brand-primary rounded px-6 py-12 md:p-20 text-white relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-brand-accent/20 rounded-full -mr-32 -mt-32 blur-3xl"></div>
-            <div className="relative z-10 grid lg:grid-cols-2 gap-16 items-center">
+            <div className="relative z-10 grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
               <div>
                 <h2 className="text-4xl md:text-5xl font-bold mb-8">Serving Our <br />Communities</h2>
                 <p className="text-lg text-white/80 mb-12">
@@ -245,7 +245,7 @@ export default function HomePage({ services, areas }: HomePageProps) {
                 <div className="grid grid-cols-2 gap-4">
                   {areas.map(area => (
                     <div key={area} className="flex items-center gap-2 text-lg font-medium">
-                      <MapPin size={18} className="text-brand-accent" />
+                      <MapPin size={18} className="text-brand-accent flex-shrink-0" />
                       {area}
                     </div>
                   ))}

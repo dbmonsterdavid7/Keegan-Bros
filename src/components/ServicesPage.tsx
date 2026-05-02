@@ -21,7 +21,7 @@ export default function ServicesPage({ services, phoneNumber }: ServicesPageProp
         {/* Main Content */}
         <div className="lg:w-2/3">
           <h1 className="text-4xl md:text-5xl font-serif font-bold text-brand-text mb-8 leading-tight">
-            Transforming Your Outdoors with Expert Landscaping, Lawn Care, and Irrigation Solutions
+            Transforming Your Outdoors with Expert Landscaping, Lawn & Garden Care, and Irrigation Solutions
           </h1>
           
           <div className="mb-12 overflow-hidden rounded-xl shadow-2xl">
@@ -109,7 +109,7 @@ export default function ServicesPage({ services, phoneNumber }: ServicesPageProp
           {services.map((category) => (
             <div key={category.title} className="bg-gray-50 rounded-xl overflow-hidden border border-gray-200 shadow-sm">
               <div className="bg-white px-6 py-4 border-b border-gray-200">
-                <h4 className="text-lg font-bold text-brand-primary">{category.title === 'Lawn Care' ? 'Lawn Care & Maintenance' : category.title + ' Services'}</h4>
+                <h4 className="text-lg font-bold text-brand-primary">{category.title === 'Lawn & Garden Care' ? 'Lawn Care & Maintenance' : category.title + ' Services'}</h4>
               </div>
               <div className="p-6">
                 <ul className="space-y-3">

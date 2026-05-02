@@ -126,7 +126,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
       }
     ],
     image: "https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?auto=format&fit=crop&q=80&w=1000",
-    category: "Lawn Care"
+    category: "Lawn & Garden Care"
   },
   "mulching": {
     id: "mulching",
@@ -144,7 +144,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
       }
     ],
     image: "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&q=80&w=1000",
-    category: "Lawn Care"
+    category: "Lawn & Garden Care"
   },
   "plant-trimming-pruning": {
     id: "plant-trimming-pruning",
@@ -162,7 +162,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
       }
     ],
     image: "https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?auto=format&fit=crop&q=80&w=1000",
-    category: "Lawn Care"
+    category: "Lawn & Garden Care"
   },
   "sprinkler-repairs": {
     id: "sprinkler-repairs",

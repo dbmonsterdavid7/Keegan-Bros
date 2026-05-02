@@ -19,7 +19,7 @@ const galleryImages = [
   {
     url: "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&q=80&w=1000",
     title: "Premium Sod Installation",
-    category: "Lawn Care",
+    category: "Lawn & Garden Care",
     location: "Northville, MI"
   },
   {

@@ -23,9 +23,9 @@ export default function ContactPage({ phoneNumber }: ContactPageProps) {
   }, []);
 
   return (
-    <div className="bg-white pt-28 lg:pt-32 pb-24">
+    <div className="bg-white pt-8 lg:pt-32 pb-24">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="text-center mb-16">
+        <div className="text-center mb-8 md:mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -35,7 +35,7 @@ export default function ContactPage({ phoneNumber }: ContactPageProps) {
             <h1 className="text-4xl md:text-6xl font-serif font-bold text-brand-text mb-6">
               Request a Free Estimate
             </h1>
-            <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+            <p className="text-gray-600 max-w-2xl mx-auto text-base md:text-lg">
               Ready to transform your outdoor space? Fill out the form below and our team will get back to you 
               within 24-48 hours to discuss your project and provide a detailed estimate.
             </p>
@@ -72,16 +72,6 @@ export default function ContactPage({ phoneNumber }: ContactPageProps) {
 
                 <div className="flex items-start gap-4">
                   <div className="bg-brand-primary/20 p-3 rounded-lg text-brand-accent">
-                    <MapPin size={20} />
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-400 uppercase tracking-wider font-bold mb-1">Visit Us</p>
-                    <p className="text-lg font-medium">123 Main St.<br />Plymouth, MI 48170</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="bg-brand-primary/20 p-3 rounded-lg text-brand-accent">
                     <Clock size={20} />
                   </div>
                   <div>
@@ -92,7 +82,7 @@ export default function ContactPage({ phoneNumber }: ContactPageProps) {
               </div>
             </div>
 
-            <div className="bg-gray-50 p-8 rounded-xl border border-gray-100">
+            <div className="bg-gray-50 p-8 rounded-xl border border-gray-100 hidden md:block">
               <h4 className="text-xl font-serif font-bold text-brand-text mb-4">Why Choose Keegan Bros?</h4>
               <ul className="space-y-4">
                 {[
