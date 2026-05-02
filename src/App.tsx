@@ -71,6 +71,18 @@ function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Lock body scroll when menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMenuOpen]);
+
   // Close menus on route change
   useEffect(() => {
     setIsMenuOpen(false);
@@ -86,7 +98,7 @@ function Navigation() {
 
   // Header states
   const isHomePage = location.pathname === '/';
-  const isTransparent = !scrolled && isHomePage;
+  const isTransparent = !scrolled && isHomePage && !isMenuOpen;
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
@@ -111,13 +123,13 @@ function Navigation() {
       </div>
 
       {/* Header */}
-      <header className={`transition-all duration-300 ${scrolled ? 'glass-header-scrolled py-1.5' : `glass-header-transparent py-3 ${isTransparent ? 'text-white' : 'text-gray-900 bg-white'}`}`}>
+      <header className={`transition-all duration-300 ${isMenuOpen ? 'bg-white py-3 border-b border-gray-100 text-gray-900' : (scrolled ? 'glass-header-scrolled py-1.5' : `glass-header-transparent py-3 ${isTransparent ? 'text-white' : 'text-gray-900 bg-white'}`)}`}>
         <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
           <Link to="/" className="flex items-center gap-2 group">
             <img 
-              src={isTransparent ? "https://lh3.googleusercontent.com/d/1VHEG7JRlpedJanRJlpssfKTow6plN5Ds" : "https://lh3.googleusercontent.com/d/1VHEG7JRlpedJanRJlpssfKTow6plN5Ds"} 
+              src={isTransparent && !isMenuOpen ? "https://lh3.googleusercontent.com/d/1VHEG7JRlpedJanRJlpssfKTow6plN5Ds" : "https://lh3.googleusercontent.com/d/1VHEG7JRlpedJanRJlpssfKTow6plN5Ds"} 
               alt="Keegan Bros Landscaping Logo" 
-              className={`h-10 md:h-12 w-auto object-contain transition-all duration-300 ${isTransparent ? 'brightness-0 invert' : ''}`}
+              className={`h-10 md:h-12 w-auto object-contain transition-all duration-300 ${(isTransparent && !isMenuOpen) ? 'brightness-0 invert' : ''}`}
               referrerPolicy="no-referrer"
             />
           </Link>
@@ -201,8 +213,13 @@ function Navigation() {
             >
               <Phone size={24} />
             </a>
-            <button className={`p-2 ${isTransparent ? 'text-white' : 'text-gray-900'}`} onClick={() => setIsMenuOpen(!isMenuOpen)}>
-              {isMenuOpen ? <X /> : <Menu />}
+            <button 
+              id="mobile-menu-toggle"
+              className={`p-2 transition-all duration-300 relative z-[60] ${isMenuOpen ? 'text-gray-900' : (isTransparent ? 'text-white' : 'text-gray-900')}`} 
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            >
+              {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
           </div>
         </div>
@@ -217,7 +234,7 @@ function Navigation() {
             exit={{ opacity: 0, x: '100%' }}
             className="fixed inset-0 z-40 bg-white lg:hidden pt-24 px-6 overflow-y-auto"
           >
-            <nav className="flex flex-col gap-6 text-xl font-serif font-bold pb-12">
+            <nav className="flex flex-col gap-6 text-xl font-sans font-bold pb-12">
               <div className="flex flex-col gap-4">
                 <button 
                   onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
