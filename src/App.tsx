@@ -215,11 +215,33 @@ function Navigation() {
             </a>
             <button 
               id="mobile-menu-toggle"
-              className={`p-2 transition-all duration-300 relative z-[60] ${isMenuOpen ? 'text-gray-900' : (isTransparent ? 'text-white' : 'text-gray-900')}`} 
+              className={`p-2 relative z-[60] flex items-center justify-center transition-colors duration-300 ${isMenuOpen ? 'text-gray-900' : (isTransparent ? 'text-white' : 'text-gray-900')}`} 
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             >
-              {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+              <AnimatePresence mode="wait">
+                {isMenuOpen ? (
+                  <motion.div
+                    key="close"
+                    initial={{ opacity: 0, rotate: -90 }}
+                    animate={{ opacity: 1, rotate: 0 }}
+                    exit={{ opacity: 0, rotate: 90 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <X size={28} />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="menu"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.8 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Menu size={28} />
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </button>
           </div>
         </div>
