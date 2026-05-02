@@ -108,7 +108,7 @@ function Navigation() {
           <div className="flex gap-6">
             <div className="flex items-center gap-2">
               <Phone size={14} className="text-brand-accent" />
-              <span>(734) 865-8608</span>
+              <a href="tel:7348658608" className="hover:text-brand-accent transition-colors">(734) 865-8608</a>
             </div>
             <div className="flex items-center gap-2">
               <MapPin size={14} className="text-brand-accent" />
@@ -125,7 +125,16 @@ function Navigation() {
       {/* Header */}
       <header className={`transition-all duration-300 ${isMenuOpen ? 'bg-white py-3 border-b border-gray-100 text-gray-900' : (scrolled ? 'glass-header-scrolled py-1.5' : `glass-header-transparent py-3 ${isTransparent ? 'text-white' : 'text-gray-900 bg-white'}`)}`}>
         <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
-          <Link to="/" className="flex items-center gap-2 group">
+          <Link 
+            to="/" 
+            className="flex items-center gap-2 group"
+            onClick={(e) => {
+              if (isHomePage) {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }
+            }}
+          >
             <img 
               src={isTransparent && !isMenuOpen ? "https://lh3.googleusercontent.com/d/1VHEG7JRlpedJanRJlpssfKTow6plN5Ds" : "https://lh3.googleusercontent.com/d/1VHEG7JRlpedJanRJlpssfKTow6plN5Ds"} 
               alt="Keegan Bros Landscaping Logo" 
@@ -430,11 +439,11 @@ function AppContent() {
               <ul className="space-y-4 text-gray-400">
                 <li className="flex items-center gap-3">
                   <Phone size={18} className="text-brand-accent" />
-                  (734) 865-8608
+                  <a href="tel:7348658608" className="hover:text-white transition-colors">(734) 865-8608</a>
                 </li>
                 <li className="flex items-start gap-3">
                   <MapPin size={18} className="text-brand-accent mt-1" />
-                  123 Main St.<br />Plymouth, MI 48170
+                  46502 Darwood Ct, Plymouth, MI 48170
                 </li>
                 <li className="flex items-center gap-3">
                   <Clock size={18} className="text-brand-accent" />

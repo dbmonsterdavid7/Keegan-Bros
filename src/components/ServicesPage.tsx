@@ -100,7 +100,7 @@ export default function ServicesPage({ services, phoneNumber }: ServicesPageProp
           {/* Call to Action Box */}
           <div className="bg-brand-primary text-white p-8 rounded-xl shadow-xl text-center border-t-8 border-brand-accent">
             <p className="text-sm font-medium mb-2 opacity-90 uppercase tracking-wider">Call or Text Now!</p>
-            <a href={`tel:${phoneNumber}`} className="text-3xl md:text-4xl font-bold hover:text-brand-accent transition-colors block">
+            <a href={`tel:${phoneNumber.replace(/\D/g, '')}`} className="text-3xl md:text-4xl font-bold hover:text-brand-accent transition-colors block">
               {phoneNumber}
             </a>
           </div>

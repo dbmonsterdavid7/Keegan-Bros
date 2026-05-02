@@ -56,7 +56,7 @@ export default function ContactPage({ phoneNumber }: ContactPageProps) {
                   </div>
                   <div>
                     <p className="text-sm text-gray-400 uppercase tracking-wider font-bold mb-1">Call Us</p>
-                    <p className="text-lg font-medium">{phoneNumber}</p>
+                    <a href={`tel:${phoneNumber.replace(/\D/g, '')}`} className="text-lg font-medium hover:text-brand-accent transition-colors">{phoneNumber}</a>
                   </div>
                 </div>
 
