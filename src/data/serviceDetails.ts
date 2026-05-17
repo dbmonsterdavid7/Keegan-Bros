@@ -31,7 +31,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
         content: "No two properties are the same. We take the time to understand your specific needs, preferences, and the unique characteristics of your land. Our goal is to provide a tailored solution that reflects your style while addressing practical considerations like privacy, maintenance, and usability."
       }
     ],
-    image: "https://images.unsplash.com/photo-1558904541-efa8c1965f1e?auto=format&fit=crop&q=80&w=1000",
+    image: "https://lh3.googleusercontent.com/d/1D-ve1iDfFCqGtvlq310iKt2ug29QO7ca",
     category: "Landscaping"
   },
   "landscape-maintenance": {
@@ -53,7 +53,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
         content: "In regions like Plymouth and Canton, the seasonal rain and temperature shifts encourage quick plant growth, but this can also lead to overgrowth and weed issues. We understand the importance of consistent maintenance to stay ahead of these challenges. Our team performs precise trimming and pruning based on plant species and seasonal needs."
       }
     ],
-    image: "https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?auto=format&fit=crop&q=80&w=1000",
+    image: "https://lh3.googleusercontent.com/d/190azt9SiEjpSOkatvb2vhXGPWaxB6D1u",
     category: "Landscaping"
   },
   "designs-renderings": {
@@ -71,7 +71,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
         content: "A great landscape starts with a great plan. Our designs include precise measurements, material specifications, and planting schedules. This level of detail ensures that the build phase goes smoothly and that the final result matches your expectations perfectly."
       }
     ],
-    image: "https://images.unsplash.com/photo-1558904541-efa8c1965f1e?auto=format&fit=crop&q=80&w=1000",
+    image: "https://lh3.googleusercontent.com/d/12hU66ZZ6-akgZiRz_qT0zJMBMwT1qHXQ",
     category: "Landscaping"
   },
   "sod-installation": {
@@ -89,7 +89,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
         content: "The secret to a successful sod installation is in the preparation. We carefully grade the area to ensure proper drainage and prepare the soil with the necessary nutrients. This creates the ideal environment for the sod to take root and thrive for years to come."
       }
     ],
-    image: "https://images.unsplash.com/photo-1558904541-efa8c1965f1e?auto=format&fit=crop&q=80&w=1000",
+    image: "https://lh3.googleusercontent.com/d/1to92Hu9nkaSgKr6XCH4tYXbig5a5gET5",
     category: "Landscaping"
   },
   "plant-tree-installation": {
@@ -107,7 +107,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
         content: "Proper planting is essential for the long-term health of your trees and shrubs. We use industry-best practices for hole preparation, root care, and initial watering. Our careful approach gives your new plants the best possible start in their new home."
       }
     ],
-    image: "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&q=80&w=1000",
+    image: "https://lh3.googleusercontent.com/d/1m3ZsJWu351lBtc0n6XXJv7bmJr7YHwTs",
     category: "Landscaping"
   },
   "yard-cleanups": {
@@ -125,7 +125,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
         content: "A thorough cleanup can breathe new life into an overgrown or neglected yard. We don't just remove debris; we also edge beds, trim back perennials, and ensure that your entire landscape is ready for its next phase of growth."
       }
     ],
-    image: "https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?auto=format&fit=crop&q=80&w=1000",
+    image: "https://lh3.googleusercontent.com/d/1dAHpNzLze2_uQ4cHJuZiugg3-IKeD9JU",
     category: "Lawn & Garden Care"
   },
   "mulching": {
@@ -143,7 +143,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
         content: "We ensure that mulch is applied at the correct depth and kept away from plant stems and tree trunks to prevent rot. Our clean and precise installation gives your garden beds a polished, professional look that lasts throughout the season."
       }
     ],
-    image: "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&q=80&w=1000",
+    image: "https://lh3.googleusercontent.com/d/1k0sHv2SWw1ASxaTvQ8wVSdYjEIYb2fdR",
     category: "Lawn & Garden Care"
   },
   "plant-trimming-pruning": {
@@ -161,7 +161,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
         content: "Our team has the expertise to shape your plants in a way that complements your overall landscape design. Whether you prefer a formal, structured look or a more natural appearance, we provide careful trimming that enhances the visual appeal of your property."
       }
     ],
-    image: "https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?auto=format&fit=crop&q=80&w=1000",
+    image: "https://lh3.googleusercontent.com/d/1sUlbta9l-sPY0FNlzrPBUs6I--IJsP_g",
     category: "Lawn & Garden Care"
   },
   "sprinkler-repairs": {
@@ -179,7 +179,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
         content: "A poorly functioning sprinkler system can lead to dry patches or overwatered areas. Our repairs ensure that your lawn and garden receive the precise amount of water they need, saving you money on your water bill and keeping your landscape healthy."
       }
     ],
-    image: "https://images.unsplash.com/photo-1558904541-efa8c1965f1e?auto=format&fit=crop&q=80&w=1000",
+    image: "https://lh3.googleusercontent.com/d/1uXp5OR_fSvrsYzzDHMCcHpcZQ55Hl29w",
     category: "Irrigation"
   },
   "sprinkler-startups": {
@@ -197,7 +197,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
         content: "Our startup service includes a thorough inspection of your entire system. By identifying potential issues early, we can make repairs before they become major problems, ensuring your lawn stays green all summer long."
       }
     ],
-    image: "https://images.unsplash.com/photo-1558904541-efa8c1965f1e?auto=format&fit=crop&q=80&w=1000",
+    image: "https://lh3.googleusercontent.com/d/16sfZUJnE7E_kPXJcl5PSqVx0PbA2VXJ8",
     category: "Irrigation"
   },
   "system-maintenance": {
@@ -215,7 +215,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
         content: "Our maintenance services focus on water conservation and system longevity. By keeping your irrigation system in top shape, we help you avoid wasted water and extend the life of your equipment, saving you money in the long run."
       }
     ],
-    image: "https://images.unsplash.com/photo-1558904541-efa8c1965f1e?auto=format&fit=crop&q=80&w=1000",
+    image: "https://lh3.googleusercontent.com/d/1A0cFBU662ug7KzlRPQpU7a9nfP1vB6gQ",
     category: "Irrigation"
   },
   "french-drain-installation": {
@@ -233,7 +233,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
         content: "Our French drains are built to last using high-quality materials. We design them to be discreet, often integrating them seamlessly into your existing landscape so they provide essential drainage without affecting your property's aesthetic."
       }
     ],
-    image: "https://images.unsplash.com/photo-1558904541-efa8c1965f1e?auto=format&fit=crop&q=80&w=1000",
+    image: "https://lh3.googleusercontent.com/d/1ZfzScxKam6aYFNZdsxo0j8AZEd8OgPR-",
     category: "Irrigation"
   }
 };

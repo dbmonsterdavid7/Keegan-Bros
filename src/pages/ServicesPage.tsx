@@ -87,7 +87,7 @@ export default function ServicesPage({ services, phoneNumber }: ServicesPageProp
 
           <div className="mt-16 overflow-hidden rounded-xl shadow-2xl">
             <img 
-              src="https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?auto=format&fit=crop&q=80&w=1200" 
+              src="https://lh3.googleusercontent.com/d/1D-ve1iDfFCqGtvlq310iKt2ug29QO7ca" 
               alt="Lawn maintenance in progress" 
               className="w-full h-[300px] object-cover"
               referrerPolicy="no-referrer"
