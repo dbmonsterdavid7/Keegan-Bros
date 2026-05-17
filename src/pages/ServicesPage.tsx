@@ -26,7 +26,7 @@ export default function ServicesPage({ services, phoneNumber }: ServicesPageProp
           
           <div className="mb-12 overflow-hidden rounded-xl shadow-2xl">
             <img 
-              src="https://images.unsplash.com/photo-1558905619-17153c2462b7?auto=format&fit=crop&q=80&w=1200" 
+              src="https://lh3.googleusercontent.com/d/1wItJvBWCeAv6iCM5TjFdb5bgO13mhsz3" 
               alt="Beautiful landscape design" 
               className="w-full h-[400px] object-cover"
               referrerPolicy="no-referrer"
