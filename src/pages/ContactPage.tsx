@@ -23,7 +23,7 @@ export default function ContactPage({ phoneNumber }: ContactPageProps) {
   }, []);
 
   return (
-    <div className="bg-white pt-8 lg:pt-32 pb-24">
+    <div className="bg-white pb-24">
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-8 md:mb-16">
           <motion.div

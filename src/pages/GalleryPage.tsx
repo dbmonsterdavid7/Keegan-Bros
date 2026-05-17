@@ -44,7 +44,7 @@ const galleryImages = [
 
 export default function GalleryPage() {
   return (
-    <div className="pt-28 lg:pt-32 pb-24">
+    <div className="pb-24">
       {/* Hero Section */}
       <section className="bg-brand-bg text-white py-20 mb-16">
         <div className="max-w-7xl mx-auto px-4 text-center">

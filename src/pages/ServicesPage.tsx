@@ -16,7 +16,7 @@ export default function ServicesPage({ services, phoneNumber }: ServicesPageProp
   const getServiceId = (name: string) => name.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-');
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-12 md:py-20 pt-28 lg:pt-32">
+    <div className="max-w-7xl mx-auto px-4 py-12 md:py-20">
       <div className="flex flex-col lg:flex-row gap-12">
         {/* Main Content */}
         <div className="lg:w-2/3">
