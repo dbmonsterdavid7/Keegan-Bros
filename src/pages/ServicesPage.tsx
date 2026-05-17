@@ -1,6 +1,7 @@
 import React from 'react';
 import { Phone, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import serviceHero from '../assets/images/regenerated_image_1779044339654.png';
 
 interface ServiceCategory {
   title: string;
@@ -26,10 +27,9 @@ export default function ServicesPage({ services, phoneNumber }: ServicesPageProp
           
           <div className="mb-12 overflow-hidden rounded-xl shadow-2xl">
             <img 
-              src="https://lh3.googleusercontent.com/d/1wItJvBWCeAv6iCM5TjFdb5bgO13mhsz3" 
+              src={serviceHero} 
               alt="Beautiful landscape design" 
               className="w-full h-[400px] object-cover"
-              referrerPolicy="no-referrer"
             />
           </div>
 
