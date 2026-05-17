@@ -3,42 +3,62 @@ import { motion } from 'motion/react';
 import { Camera, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
+import serviceHero from '../assets/images/regenerated_image_1779044339654.png';
+
 const galleryImages = [
   {
-    url: "https://images.unsplash.com/photo-1558904541-efa8c1965f1e?auto=format&fit=crop&q=80&w=1000",
-    title: "Modern Landscape Design",
+    url: serviceHero,
+    title: "Modern Landscape Architecture",
     category: "Landscaping",
     location: "Plymouth, MI"
   },
   {
-    url: "https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?auto=format&fit=crop&q=80&w=1000",
-    title: "Custom Irrigation Install",
-    category: "Irrigation",
+    url: "https://lh3.googleusercontent.com/d/1D-ve1iDfFCqGtvlq310iKt2ug29QO7ca",
+    title: "Premium Design & Build",
+    category: "Landscaping",
     location: "Canton, MI"
   },
   {
-    url: "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&q=80&w=1000",
-    title: "Premium Sod Installation",
-    category: "Lawn & Garden Care",
+    url: "https://lh3.googleusercontent.com/d/1to92Hu9nkaSgKr6XCH4tYXbig5a5gET5",
+    title: "Lush Sod Installation",
+    category: "Landscaping",
     location: "Northville, MI"
   },
   {
-    url: "https://images.unsplash.com/photo-1563298723-dcfebaa392e3?auto=format&fit=crop&q=80&w=1000",
-    title: "Outdoor Lighting & Patio",
-    category: "Landscaping",
+    url: "https://lh3.googleusercontent.com/d/1uXp5OR_fSvrsYzzDHMCcHpcZQ55Hl29w",
+    title: "Irrigation System Repair",
+    category: "Irrigation",
     location: "Ann Arbor, MI"
   },
   {
-    url: "https://images.unsplash.com/photo-1598902108854-10e335adac99?auto=format&fit=crop&q=80&w=1000",
-    title: "Retaining Wall Project",
-    category: "Hardscaping",
+    url: "https://lh3.googleusercontent.com/d/1k0sHv2SWw1ASxaTvQ8wVSdYjEIYb2fdR",
+    title: "Decorative Bark Mulching",
+    category: "Maintenance",
     location: "Livonia, MI"
   },
   {
-    url: "https://images.unsplash.com/photo-1599110906885-b024c90c2773?auto=format&fit=crop&q=80&w=1000",
-    title: "Spring Cleanup & Mulching",
+    url: "https://lh3.googleusercontent.com/d/1ZfzScxKam6aYFNZdsxo0j8AZEd8OgPR-",
+    title: "Foundation Drainage Solution",
+    category: "Irrigation",
+    location: "Plymouth, MI"
+  },
+  {
+    url: "https://lh3.googleusercontent.com/d/190azt9SiEjpSOkatvb2vhXGPWaxB6D1u",
+    title: "Full Landscape Maintenance",
     category: "Maintenance",
     location: "Novi, MI"
+  },
+  {
+    url: "https://lh3.googleusercontent.com/d/16sfZUJnE7E_kPXJcl5PSqVx0PbA2VXJ8",
+    title: "Seasonal Sprinkler Startup",
+    category: "Irrigation",
+    location: "South Lyon, MI"
+  },
+  {
+    url: "https://lh3.googleusercontent.com/d/1m3ZsJWu351lBtc0n6XXJv7bmJr7YHwTs",
+    title: "Ornamental Tree Planting",
+    category: "Landscaping",
+    location: "Farmington Hills, MI"
   }
 ];
 
@@ -110,12 +130,12 @@ export default function GalleryPage() {
               Let's transform your outdoor space together. Contact us today for a free estimate 
               and custom design consultation.
             </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Link to="/contact" className="btn-primary bg-brand-accent text-brand-bg hover:bg-white px-8 py-4 inline-block">
+            <div className="flex justify-center">
+              <Link 
+                to="/contact" 
+                className="bg-white text-brand-primary font-bold px-10 py-4 rounded-lg hover:bg-brand-accent transition-all shadow-xl inline-block"
+              >
                 Get a Free Quote
-              </Link>
-              <Link to="/contact" className="btn-secondary border-white text-white hover:bg-white hover:text-brand-primary px-8 py-4 inline-block">
-                Contact Us
               </Link>
             </div>
           </div>
