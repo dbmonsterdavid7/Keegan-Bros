@@ -294,7 +294,7 @@ export default function HomePage({ services, areas }: HomePageProps) {
               {
                 title: "Complete Guide to Outdoor Lighting",
                 date: "March 15, 2026",
-                image: "https://images.unsplash.com/photo-1563298723-dcfebaa392e3?auto=format&fit=crop&q=80&w=1000"
+                image: "https://lh3.googleusercontent.com/d/1WhUdmMiuudyxl5HDVnO4poICIFrWFSdi"
               }
             ].map(post => (
               <a key={post.title} href="#" className="group block">
