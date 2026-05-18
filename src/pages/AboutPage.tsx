@@ -4,10 +4,10 @@ import { CheckCircle, Award, Users, Shield } from 'lucide-react';
 
 export default function AboutPage() {
   const stats = [
-    { label: "Years Experience", value: "15+" },
-    { label: "Projects Completed", value: "1,200+" },
-    { label: "Satisfied Clients", value: "950+" },
-    { label: "Service Areas", value: "10+" }
+    { label: "Years Experience", value: "24+" },
+    { label: "Projects Completed", value: "1.2k+" },
+    { label: "Service Areas", value: "10+" },
+    { label: "Happy Clients", value: "98%" }
   ];
 
   return (
@@ -16,9 +16,10 @@ export default function AboutPage() {
       <section className="relative h-[400px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?auto=format&fit=crop&q=80&w=2000"
+            src="https://lh3.googleusercontent.com/d/1RHYTnhW3UFxMu3KQ1G6uJG3WKWEB9-WG"
             alt="About Keegan Bros"
             className="w-full h-full object-cover brightness-50"
+            referrerPolicy="no-referrer"
           />
         </div>
         <div className="relative z-10 text-center px-4">
@@ -72,7 +73,7 @@ export default function AboutPage() {
               className="rounded-2xl shadow-2xl"
             />
             <div className="absolute -bottom-8 -left-8 bg-brand-primary text-white p-8 rounded-xl shadow-xl hidden lg:block">
-              <p className="text-3xl font-bold">15+</p>
+              <p className="text-3xl font-bold">24+</p>
               <p className="text-sm uppercase tracking-wider">Years of Excellence</p>
             </div>
           </motion.div>
