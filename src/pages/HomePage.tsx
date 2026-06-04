@@ -1,7 +1,7 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'motion/react';
-import { ArrowUpRight, ArrowRight, CheckCircle2, MapPin } from 'lucide-react';
+import { ArrowUpRight, ArrowRight, CheckCircle2, MapPin, ChevronDown, ChevronUp } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 
 interface HomePageProps {
@@ -11,6 +11,30 @@ interface HomePageProps {
 
 export default function HomePage({ services, areas }: HomePageProps) {
   const navigate = useNavigate();
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+
+  const faqs = [
+    {
+      question: "Which areas in Southeast Michigan do you serve?",
+      answer: "Keegan Bros proudly serves Southeast Michigan, specializing in Plymouth, Canton, Northville, Livonia, Novi, Ann Arbor, Farmington Hills, Westland, Ypsilanti, and South Lyon. We are local experts tailored to Wayne and Washtenaw county weather, soil conditions, and residential landscaping guidelines."
+    },
+    {
+      question: "Do you provide 3D landscape designs and renderings before construction?",
+      answer: "Yes, we create fully tailored 2D and 3D digital landscape renderings. This allows homeowners in Plymouth and Canton to visualize their exact plantings, sod installation, mulching, and tree placements before our six-man expert crew breaks ground."
+    },
+    {
+      question: "What is your sod installation process for Michigan lawns?",
+      answer: "Our sod installation begins with exhaustive soil preparation: we excavate or grade the site for proper water drainage, enrich the soil with local organic components, and precision-lay fresh Michigan-grown turf grass. This gives your property an instant premium green lawn that takes root quickly."
+    },
+    {
+      question: "Why should I choose Keegan Bros: Landscaping Plymouth MI over large franchises?",
+      answer: "Keegan Bros is a specialized, local team of six who communicate directly with you. You work with the owners themselves, not a rotation of temporary subcontractors. This guarantees elite attention to detail, premium materials, and responsive customer service for every landscaping task."
+    },
+    {
+      question: "How do your sprinkler startups and repair services keep lawns green?",
+      answer: "We offer specialized irrigation startups every spring where we slowly pressurize lines, check for cracks or system leaks, recalibrate sprinkler head nozzles for optimal coverage, and set timer controllers to avoid water waste. We also install custom French drains to handle excess spring yard flooding."
+    }
+  ];
 
   useEffect(() => {
     const script = document.createElement('script');
@@ -271,6 +295,50 @@ export default function HomePage({ services, areas }: HomePageProps) {
                 ></iframe>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-24 bg-gray-50 border-t border-b border-gray-100">
+        <div className="max-w-4xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <span className="text-brand-primary font-bold uppercase tracking-widest text-sm mb-4 block">Frequently Asked Questions</span>
+            <h2 className="text-4xl font-serif font-bold text-brand-text mb-4 animate-fade-in">
+              Local Landscaping &amp; Sprinkler FAQ
+            </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Got questions about lawn care, local Michigan soil preparation, sprinkler startups, or drainage systems in Plymouth? Find your answers here.
+            </p>
+          </div>
+
+          <div className="space-y-4">
+            {faqs.map((faq, idx) => {
+              const isOpen = openFaq === idx;
+              return (
+                <div 
+                  key={idx} 
+                  className="bg-white rounded-lg border border-gray-100 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
+                >
+                  <button
+                    onClick={() => setOpenFaq(isOpen ? null : idx)}
+                    className="w-full text-left px-6 py-5 flex justify-between items-center bg-white hover:bg-gray-50/50 transition-colors focus:outline-none"
+                  >
+                    <span className="font-bold text-lg text-brand-text pr-4">{faq.question}</span>
+                    {isOpen ? (
+                      <ChevronUp size={20} className="text-brand-primary flex-shrink-0" />
+                    ) : (
+                      <ChevronDown size={20} className="text-brand-primary flex-shrink-0" />
+                    )}
+                  </button>
+                  {isOpen && (
+                    <div className="px-6 pb-6 pt-1 text-gray-600 border-t border-gray-100 leading-relaxed text-base animate-slide-down">
+                      {faq.answer}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
